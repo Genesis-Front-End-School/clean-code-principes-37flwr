@@ -1,13 +1,23 @@
-import React, { useMemo } from "react";
-import Pagination from "react-bootstrap/Pagination";
+import React, { useMemo } from 'react';
+import Pagination from 'react-bootstrap/Pagination';
+
+type Props = {
+  elementsPerPage: number;
+  totalElements: number;
+  paginate: (arg0: number) => void;
+  activePage: number;
+};
 
 const BasicPagination = ({
   elementsPerPage,
   totalElements,
   paginate,
-  active,
-}) => {
-  const getPageNumbers = (totalElements, elementsPerPage) => {
+  activePage,
+}: Props) => {
+  const getPageNumbers = (
+    totalElements: number,
+    elementsPerPage: number
+  ): Array<number> => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalElements / elementsPerPage); i++) {
@@ -28,7 +38,7 @@ const BasicPagination = ({
         <Pagination.Item
           onClick={() => paginate(number)}
           key={number}
-          active={parseInt(number) === parseInt(active)}
+          active={number === activePage}
         >
           {number}
         </Pagination.Item>
