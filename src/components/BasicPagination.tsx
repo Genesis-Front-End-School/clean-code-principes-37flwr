@@ -14,23 +14,21 @@ const BasicPagination = ({
   paginate,
   activePage,
 }: Props) => {
-  const getPageNumbers = (
-    totalElements: number,
-    elementsPerPage: number
-  ): Array<number> => {
-    const pageNumbers = [];
-
-    for (let i = 1; i <= Math.ceil(totalElements / elementsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-
-    return pageNumbers;
-  };
-
   const memoizedPageNumbers = useMemo(
     () => getPageNumbers(totalElements, elementsPerPage),
     [totalElements, elementsPerPage]
   );
+
+  function getPageNumbers(
+    totalElements: number,
+    elementsPerPage: number
+  ): Array<number> {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(totalElements / elementsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  }
 
   return (
     <Pagination>

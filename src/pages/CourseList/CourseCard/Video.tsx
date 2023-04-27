@@ -1,12 +1,18 @@
-import Hls from "hls.js";
-import React, { useRef } from "react";
-import ImageNotFound from "../../../assets/not-found-img.png";
+import Hls from 'hls.js';
+import React, { useRef } from 'react';
+import ImageNotFound from '../../../assets/not-found-img.png';
+import { CourseVideoPreview } from '../Course.type';
 
-const Video = ({ isHovering, videoPreview }) => {
+type Props = {
+  isHovering: boolean;
+  videoPreview: CourseVideoPreview;
+};
+
+const Video = ({ isHovering, videoPreview }: Props) => {
   const previewImageLink = videoPreview?.previewImageLink;
-  const videoRef = useRef();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  if (Hls.isSupported() && videoPreview) {
+  if (Hls.isSupported() && videoPreview && videoRef.current) {
     var hls = new Hls();
     hls.loadSource(videoPreview.link);
     hls.attachMedia(videoRef.current);
@@ -27,7 +33,7 @@ const Video = ({ isHovering, videoPreview }) => {
   return previewImageLink ? (
     <picture>
       <source
-        srcSet={previewImageLink.replace("preview", "") + "cover.webp"}
+        srcSet={previewImageLink.replace('preview', '') + 'cover.webp'}
         type="image/webp"
       />
       <img className="courses-list__card__img" src={ImageNotFound} alt="" />
