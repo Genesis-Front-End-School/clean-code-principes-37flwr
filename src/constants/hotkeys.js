@@ -1,4 +1,4 @@
-export const hotkeysParams = [
+export const HOTKEY_PARAMS = [
   { key: "1", action: "0.5" },
   { key: "2", action: "0.75" },
   { key: "3", action: "1" },

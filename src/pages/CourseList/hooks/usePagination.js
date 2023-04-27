@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { COURSES_PER_PAGE } from "../../../constants/Pagination";
+import { COURSES_PER_PAGE } from "../../../constants/pagination";
 
 const usePagination = (courses) => {
   let [searchParams, setSearchParams] = useSearchParams();

@@ -3,10 +3,10 @@ import toast from "react-hot-toast";
 import Hls from "hls.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
-import { hotkeysParams } from "../../schemes/hotkeysParams";
 import { coursesActions } from "../../store/ducks/courses";
 import { usePip } from "../../hooks";
 import { Button } from "react-bootstrap";
+import { HOTKEY_PARAMS } from "../../constants/hotkeys";
 
 const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
   const [openedInPip, setOpenedInPip] = useState(false);
@@ -34,7 +34,7 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
   // Handle hotkeys for playback speed
   useEffect(() => {
     const handlePlaybackChange = (event) => {
-      const newPlaybackSpeed = hotkeysParams.find(
+      const newPlaybackSpeed = HOTKEY_PARAMS.find(
         (h) => h.key === event.key
       )?.action;
       if (newPlaybackSpeed) {
@@ -49,6 +49,7 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
     return () => {
       window.removeEventListener("keydown", handlePlaybackChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Store current video timing on component unmount and move current video to pip

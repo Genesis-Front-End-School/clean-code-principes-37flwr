@@ -1,24 +1,18 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams, useSearchParams, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
 import useSwr from "swr";
-import toast from "react-hot-toast";
-import Hls from "hls.js";
 
-import Lesson from "./Lesson";
 import PlaybackSpeed from "./PlaybackSpeed";
-
-import { hotkeysParams } from "../../schemes/hotkeysParams";
-import { usePip } from "../../hooks";
+import Video from "./Video";
+import Details from "./Details";
 import { coursesActions } from "../../store/ducks/courses";
+import useCourseLocation from "./hooks/useCourseLocation";
 import {
   COURSES_FETCH_LINK,
   TOKEN_FETCH_LINK,
-} from "../../constants/ApiCallLinks";
-import Video from "./Video";
-import Details from "./Details";
-import useCourseLocation from "./hooks/useCourseLocation";
+} from "../../constants/apiCallLinks";
+import { HOTKEY_PARAMS } from "../../constants/hotkeys";
 
 const Course = () => {
   const videoRef = useRef();
@@ -101,7 +95,7 @@ const Course = () => {
         </div>
       </div>
       <div className="course__details">{courseDetails.title}</div>
-      <PlaybackSpeed params={hotkeysParams} />
+      <PlaybackSpeed params={HOTKEY_PARAMS} />
     </div>
   );
 };
