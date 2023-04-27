@@ -1,0 +1,16 @@
+@import "../../library";
+
+.basic-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  height: $header-height;
+  padding-bottom: 15px;
+
+  &__link {
+    color: $white-color;
+    text-decoration: none;
+  }
+}
