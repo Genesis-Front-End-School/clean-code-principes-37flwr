@@ -59,11 +59,10 @@ const PipProvider = ({ children }) => {
           timing: videoRef.current.currentTime,
         })
       );
-      console.log(video.handleOnClose);
-      video.handleOnClose && video.handleOnClose(videoRef.current);
+      video.handleOnClose?.(videoRef.current);
     }
 
-    newVideo?.link ? setVideo(newVideo) : setVideo(null);
+    setVideo(newVideo?.link ? newVideo : null);
   };
 
   return (

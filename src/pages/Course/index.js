@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useSearchParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 import useSwr from "swr";
 import toast from "react-hot-toast";
 import Hls from "hls.js";
@@ -11,7 +12,10 @@ import PlaybackSpeed from "./PlaybackSpeed";
 import { hotkeysParams } from "../../schemes/hotkeysParams";
 import { usePip } from "../../hooks";
 import { coursesActions } from "../../store/ducks/courses";
-import { Button } from "react-bootstrap";
+import {
+  COURSES_FETCH_LINK,
+  TOKEN_FETCH_LINK,
+} from "../../constants/ApiCallLinks";
 
 const Course = () => {
   const [activeLessonId, setActiveLessonId] = useState("");
@@ -30,10 +34,10 @@ const Course = () => {
   const { courses } = useSelector((state) => state.Courses);
 
   const { data: token } = useSwr({
-    url: "https://api.wisey.app/api/v1/auth/anonymous?platform=subscriptions",
+    url: TOKEN_FETCH_LINK,
   });
   const { data: courseDetails } = useSwr(() => ({
-    url: `https://api.wisey.app/api/v1/core/preview-courses/${id}`,
+    url: `${COURSES_FETCH_LINK}/${id}`,
     params: [["token", token.token]],
   }));
 
@@ -203,7 +207,7 @@ const Course = () => {
             {!openedInPip && (
               <Button
                 className="course__lessons__video__btn"
-                onClick={() => moveToPip()}
+                onClick={moveToPip}
               >
                 Open in pip
               </Button>

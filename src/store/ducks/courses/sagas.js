@@ -105,7 +105,6 @@ function* initCourseSaga({ payload }) {
       yield put(actions.apiError());
     }
   } catch {
-    console.log("faild");
     yield put(actions.apiError());
   }
 }

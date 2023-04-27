@@ -2,14 +2,18 @@ import { useSearchParams } from "react-router-dom";
 import useSwr from "swr";
 
 import BasicPagination from "../../components/BasicPagination";
+import {
+  COURSES_FETCH_LINK,
+  TOKEN_FETCH_LINK,
+} from "../../constants/ApiCallLinks";
 import CourseCard from "./CourseCard";
 
 const CoursesList = () => {
   const { data: token } = useSwr({
-    url: "https://api.wisey.app/api/v1/auth/anonymous?platform=subscriptions",
+    url: TOKEN_FETCH_LINK,
   });
   const { data: courses } = useSwr(() => ({
-    url: "https://api.wisey.app/api/v1/core/preview-courses",
+    url: COURSES_FETCH_LINK,
     params: [["token", token.token]],
   }));
 

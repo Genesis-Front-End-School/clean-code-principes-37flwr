@@ -11,11 +11,11 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
       </p>
       <div className="error-fallback__buttons">
         <Link className="error-fallback__buttons__link" to="/">
-          <Button variant="outline-info" onClick={() => resetErrorBoundary()}>
+          <Button variant="outline-info" onClick={resetErrorBoundary}>
             Home page
           </Button>
         </Link>
-        <Button variant="outline-info" onClick={() => window.location.reload()}>
+        <Button variant="outline-info" onClick={window.location.reload}>
           Try again
         </Button>
       </div>

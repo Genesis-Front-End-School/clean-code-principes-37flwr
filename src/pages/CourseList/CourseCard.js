@@ -8,57 +8,27 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import ImageNotFound from "../../assets/not-found-img.png";
 import "./styles.scss";
+import CourseCardVideo from "./CourseCardVideo";
 
 const CourseCard = ({ data }) => {
   const { id, description, meta, title, lessonsCount, tags, rating } = data;
   const navigate = useNavigate();
-  const videoRef = useRef();
   const [isHovering, setIsHovering] = useState(false);
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
+  const handleHover = (bool) => {
+    setIsHovering(bool);
   };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-
-  if (Hls.isSupported() && meta.courseVideoPreview) {
-    var hls = new Hls();
-    hls.loadSource(meta.courseVideoPreview.link);
-    hls.attachMedia(videoRef.current);
-  }
 
   return (
     <Card
       className="fs-grid-elem courses-list__card"
-      onMouseOver={() => handleMouseOver((currState) => !currState)}
-      onMouseLeave={() => handleMouseOut((currState) => !currState)}
+      onMouseEnter={() => handleHover(true)}
+      onMouseLeave={() => handleHover(false)}
     >
-      {isHovering ? (
-        <video
-          autoPlay
-          controls={false}
-          ref={videoRef}
-          className="courses-list__card__video"
-          muted
-        ></video>
-      ) : meta.courseVideoPreview?.previewImageLink ? (
-        <picture>
-          <source
-            srcSet={
-              meta.courseVideoPreview?.previewImageLink?.replace(
-                "preview",
-                ""
-              ) + "cover.webp"
-            }
-            type="image/webp"
-          />
-          <img className="courses-list__card__img" src={ImageNotFound} alt="" />
-        </picture>
-      ) : (
-        <img className="courses-list__card__img" src={ImageNotFound} alt="" />
-      )}
+      <CourseCardVideo
+        isHovering={isHovering}
+        videoPreview={meta.courseVideoPreview}
+      />
       <Card.Body className="d-grid gap-2">
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
