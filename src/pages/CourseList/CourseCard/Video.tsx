@@ -1,14 +1,14 @@
 import Hls from 'hls.js';
 import React, { useRef } from 'react';
 import ImageNotFound from '../../../assets/not-found-img.png';
-import { CourseVideoPreview } from '../Course.type';
+import { ICourseVideoPreview } from '../../../interfaces/Course.interface';
 
-type Props = {
+interface IProps {
   isHovering: boolean;
-  videoPreview: CourseVideoPreview;
-};
+  videoPreview: ICourseVideoPreview;
+}
 
-const Video = ({ isHovering, videoPreview }: Props) => {
+const Video = ({ isHovering, videoPreview }: IProps) => {
   const previewImageLink = videoPreview?.previewImageLink;
   const videoRef = useRef<HTMLVideoElement>(null);
 

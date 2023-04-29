@@ -1,23 +1,30 @@
-import React from "react";
-import cn from "classnames";
-import Locked from "../../assets/locked.png";
-import "./styles.scss";
-import { fancyTimeFormat } from "../../utils/formatters";
+import React from 'react';
+import cn from 'classnames';
+import Locked from '../../assets/locked.png';
+import './styles.scss';
+import { fancyTimeFormat } from '../../utils/formatters';
+import { ILesson } from '../../interfaces/Course.interface';
 
-const Lesson = ({ data, activeLesson, handleClick }) => {
+interface IProps {
+  data: ILesson;
+  activeLesson: string;
+  handleClick: (arg0: string) => void;
+}
+
+const Lesson = ({ data, activeLesson, handleClick }: IProps) => {
   const { id, duration, previewImageLink, status, order, title } = data;
   const handleClickIfUnlocked = () => {
-    if (status === "unlocked") handleClick(id);
+    if (status === 'unlocked') handleClick(id);
   };
   return (
     <div
       className={cn(
-        "lesson",
-        activeLesson === id && "lesson--active",
-        status !== "unlocked" && "lesson--locked"
+        'lesson',
+        activeLesson === id && 'lesson--active',
+        status !== 'unlocked' && 'lesson--locked'
       )}
     >
-      {status !== "unlocked" && (
+      {status !== 'unlocked' && (
         <img className="lesson--locked__img" src={Locked} alt="lesson locked" />
       )}
       <div onClick={handleClickIfUnlocked} className="lesson__details">

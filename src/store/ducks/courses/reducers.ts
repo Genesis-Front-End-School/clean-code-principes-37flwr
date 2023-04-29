@@ -1,11 +1,14 @@
-import actions from "./actionTypes";
+import actions from './actionTypes';
 
 const initialState = {
   courses: [],
   loading: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (
+  state = initialState,
+  action: { type: string; payload: any }
+) => {
   switch (action.type) {
     case actions.CHANGE_PROGRESS:
       return {

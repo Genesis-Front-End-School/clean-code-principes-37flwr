@@ -1,19 +1,19 @@
-import { Suspense } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
-import { SWRConfig } from "swr";
-import { Provider } from "react-redux";
-import store, { persistor } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
-import { Toaster } from "react-hot-toast";
+import { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import { SWRConfig } from 'swr';
+import { Provider } from 'react-redux';
+import store, { persistor } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Toaster } from 'react-hot-toast';
 
-import AppRoutes from "./routes/routeList";
-import Navbar from "./components/Navbar";
-import ErrorFallback from "./components/fallbacks/ErrorFallback";
-import Loading from "./components/fallbacks/Loading";
+import AppRoutes from './routes/routeList';
+import Navbar from './components/Navbar';
+import ErrorFallback from './components/fallbacks/ErrorFallback';
+import Loading from './components/fallbacks/Loading';
 
-import { fetcher } from "./utils/fetcher";
-import ContextProviders from "./context";
+import { fetcher } from './utils/fetcher';
+import ContextProviders from './context';
 
 function App() {
   return (

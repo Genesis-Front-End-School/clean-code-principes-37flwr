@@ -3,13 +3,13 @@ import Card from 'react-bootstrap/Card';
 import Video from './Video';
 import Content from './Content';
 import '../styles.scss';
-import { Course } from '../Course.type';
+import { ICourse } from '../../../interfaces/Course.interface';
 
-type Props = {
-  data: Course;
-};
+interface IProps {
+  data: ICourse;
+}
 
-const CourseCard = ({ data }: Props) => {
+const CourseCard = ({ data }: IProps) => {
   const { meta } = data;
   const [isHovering, setIsHovering] = useState<boolean>(false);
 

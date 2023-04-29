@@ -1,23 +1,22 @@
 import axios from 'axios';
 
-type FetchParams = {
-  url: string;
-  params: Array<Param>;
-};
-
-type Param = Array<string>;
-
-type ParamsObject = {
-  [key: string]: string;
-};
-
-type ExtendedError = Error & {
+interface IFetchError extends Error {
   response?: string;
   status?: number;
-};
+}
+interface IFetchParams {
+  url: string;
+  params: Array<IParam>;
+}
 
-export async function fetcher({ url, params }: FetchParams) {
-  const paramsObj: ParamsObject = {};
+type IParam = Array<string>;
+
+interface IParamsObject {
+  [key: string]: string;
+}
+
+export async function fetcher({ url, params }: IFetchParams) {
+  const paramsObj: IParamsObject = {};
   params && params.map((param) => (paramsObj[param[0]] = param[1]));
   try {
     const rsp = await axios.get(url, params && { params: paramsObj });
@@ -25,7 +24,7 @@ export async function fetcher({ url, params }: FetchParams) {
       return rsp.data;
     }
   } catch (err: any) {
-    const error: ExtendedError = new Error(
+    const error: IFetchError = new Error(
       'An error occurred while fetching the data'
     );
     error.response = err.response.data.message;

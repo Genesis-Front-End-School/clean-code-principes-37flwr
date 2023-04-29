@@ -7,7 +7,7 @@ import { COURSES_PER_PAGE } from '../../constants/pagination';
 import BasicPagination from '../../components/BasicPagination';
 import CourseCard from './CourseCard';
 import usePagination from './hooks/usePagination';
-import { Course } from './Course.type';
+import { ICourse } from '../../interfaces/Course.interface';
 
 const CoursesList = () => {
   const { data: token } = useSwr({
@@ -25,7 +25,7 @@ const CoursesList = () => {
   return (
     <>
       <section className="courses-list--container">
-        {currentCourses?.map((course: Course) => (
+        {currentCourses?.map((course: ICourse) => (
           <CourseCard key={course.id} data={course} />
         ))}
       </section>

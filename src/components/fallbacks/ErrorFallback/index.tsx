@@ -4,15 +4,15 @@ import { FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
-type Error = {
+interface IExtendedError extends Error {
   response?: string;
-};
-
-interface ErrorFallbackProps extends Omit<FallbackProps, 'error'> {
-  error: Error;
 }
 
-const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
+interface IErrorFallbackProps extends Omit<FallbackProps, 'error'> {
+  error: IExtendedError;
+}
+
+const ErrorFallback = ({ error, resetErrorBoundary }: IErrorFallbackProps) => {
   return (
     <div className="full-page error-fallback">
       <p className="error-fallback__text">

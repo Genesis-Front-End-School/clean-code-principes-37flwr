@@ -1,18 +1,35 @@
-import { put, takeEvery, select } from "redux-saga/effects";
+import { put, takeEvery, select } from 'redux-saga/effects';
+import {
+  IProgress,
+  ICoursesState,
+  ICourse,
+  IUpdateCourses,
+  IActiveLesson,
+} from '../../interfaces/Courses.interfaces';
 
-import actions from "./actions";
-import types from "./actionTypes";
+import actions from './actions';
+import types from './actionTypes';
 
-const getCourses = (state) => state.Courses;
+const getCourses = (state: ICoursesState) => state.Courses;
 
-function* changeProgressSaga({ payload }) {
+type IChangeProgressSaga = {
+  payload: IProgress;
+  type: string;
+};
+
+type ILessonSaga = {
+  payload: IActiveLesson;
+  type: string;
+};
+
+function* changeProgressSaga({ payload }: IChangeProgressSaga): any {
   try {
     const { courseId, lessonId, timing } = payload;
-    const courses = yield select(getCourses);
+    const courses: any = yield select(getCourses);
 
     if (timing && lessonId && courseId) {
-      const modifiedProgress = [
-        ...courses.courses.map((c) => {
+      const modifiedProgress: IUpdateCourses = [
+        ...courses.courses.map((c: ICourse) => {
           let newProgress;
 
           if (c.progress.find((p) => p.lessonId === lessonId)) {
@@ -49,16 +66,18 @@ function* changeProgressSaga({ payload }) {
   }
 }
 
-function* changeActiveLessonSaga({ payload }) {
+function* changeActiveLessonSaga({ payload }: ILessonSaga): any {
   try {
     const courses = yield select(getCourses);
     const { courseId, activeLessonId } = payload;
 
-    const updatedCourse = courses.courses?.find((c) => c.courseId === courseId);
+    const updatedCourse = courses.courses?.find(
+      (c: ICourse) => c.courseId === courseId
+    );
 
     if (updatedCourse) {
-      const modifiedActiveLesson = [
-        ...courses.courses.map((c) =>
+      const modifiedActiveLesson: IUpdateCourses = [
+        ...courses.courses.map((c: ICourse) =>
           c.courseId === courseId ? { ...c, activeLessonId: activeLessonId } : c
         ),
       ];
@@ -71,13 +90,14 @@ function* changeActiveLessonSaga({ payload }) {
   }
 }
 
-function* initCourseSaga({ payload }) {
+function* initCourseSaga({ payload }: ILessonSaga): any {
+  console.log(payload);
   try {
     const courses = yield select(getCourses);
     const { courseId, activeLessonId } = payload;
 
     const courseAlreadyInit = courses.courses?.find(
-      (c) => c.courseId === courseId
+      (c: ICourse) => c.courseId === courseId
     );
 
     if (!courseAlreadyInit) {

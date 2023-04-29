@@ -2,13 +2,13 @@ import React from 'react';
 import { Badge, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
-import { Course } from '../Course.type';
+import { ICourse } from '../../../interfaces/Course.interface';
 
-type Props = {
-  data: Course;
-};
+interface IProps {
+  data: ICourse;
+}
 
-const Content = ({ data }: Props) => {
+const Content = ({ data }: IProps) => {
   const { id, description, title, lessonsCount, tags, rating } = data;
   const navigate = useNavigate();
 

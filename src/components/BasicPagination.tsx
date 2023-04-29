@@ -1,19 +1,19 @@
 import React, { useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 
-type Props = {
+interface IProps {
   elementsPerPage: number;
   totalElements: number;
   paginate: (arg0: number) => void;
   activePage: number;
-};
+}
 
 const BasicPagination = ({
   elementsPerPage,
   totalElements,
   paginate,
   activePage,
-}: Props) => {
+}: IProps) => {
   const memoizedPageNumbers = useMemo(
     () => getPageNumbers(totalElements, elementsPerPage),
     [totalElements, elementsPerPage]

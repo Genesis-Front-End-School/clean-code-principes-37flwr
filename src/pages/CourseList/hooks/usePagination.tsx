@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 import { COURSES_PER_PAGE } from '../../../constants/pagination';
-import { Course } from '../Course.type';
+import { ICourse } from '../../../interfaces/Course.interface';
 
-const usePagination = (courses: Array<Course>) => {
+const usePagination = (courses: Array<ICourse>) => {
   let [searchParams, setSearchParams] = useSearchParams();
   let currentPage = parseInt(searchParams.get('page') ?? '1');
 

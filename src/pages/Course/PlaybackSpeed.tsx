@@ -1,8 +1,13 @@
-import { Button } from "react-bootstrap";
+import { Button } from 'react-bootstrap';
+import { IHotkeyParams } from '../../constants/hotkeys';
 
-const PlaybackSpeed = ({ params }) => {
-  const handleClick = (key) => {
-    let newEvent = new KeyboardEvent("keydown", { key: key, ctrlKey: true });
+interface IProps {
+  params: IHotkeyParams;
+}
+
+const PlaybackSpeed = ({ params }: IProps) => {
+  const handleClick = (key: string) => {
+    let newEvent = new KeyboardEvent('keydown', { key: key, ctrlKey: true });
     window.dispatchEvent(newEvent);
   };
 
