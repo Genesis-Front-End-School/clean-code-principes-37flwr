@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { COURSES_PER_PAGE } from "../../../constants/pagination";
 
@@ -8,12 +9,11 @@ const usePagination = (courses) => {
     currentPage = 1;
   }
 
-  const idxOfLastCourse = currentPage * COURSES_PER_PAGE;
-  const idxOfFirstCourse = idxOfLastCourse - COURSES_PER_PAGE;
-  const currentCourses = courses?.courses.slice(
-    idxOfFirstCourse,
-    idxOfLastCourse
-  );
+  const currentCourses = useMemo(() => {
+    const idxOfLastCourse = currentPage * COURSES_PER_PAGE;
+    const idxOfFirstCourse = idxOfLastCourse - COURSES_PER_PAGE;
+    return courses?.courses.slice(idxOfFirstCourse, idxOfLastCourse);
+  }, [courses]);
 
   const paginate = (number) => {
     setSearchParams(`page=${number}`);

@@ -6,40 +6,33 @@ import { coursesActions } from "../../../store/ducks/courses";
 const useCourseLocation = ({ courseDetails }) => {
   const location = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { id } = useParams();
+  const { id: courseId } = useParams();
 
   const dispatch = useDispatch();
   const { courses } = useSelector((state) => state.Courses);
 
   const idSearchParams = searchParams.get("lesson_id");
-  let currentCourse = courses?.find((c) => c.courseId === id);
+  let currentCourse = courses?.find((c) => c.courseId === courseId);
+
+  const changeActiveLesson = (courseId) => {
+    dispatch(
+      coursesActions.changeActiveLesson({
+        courseId: courseId,
+        activeLessonId: idSearchParams,
+      })
+    );
+  };
 
   useEffect(() => {
     if (courseDetails) {
-      if (!idSearchParams) {
-        if (currentCourse) {
-          setSearchParams(`lesson_id=${currentCourse.activeLessonId}`);
-        } else {
-          dispatch(
-            coursesActions.changeActiveLesson({
-              courseId: id,
-              activeLessonId: courseDetails.lessons[0].id,
-            })
-          );
-          setSearchParams(`lesson_id=${courseDetails.lessons[0].id}`);
-        }
+      if (currentCourse) {
+        setSearchParams(`lesson_id=${currentCourse.activeLessonId}`);
       } else {
-        if (currentCourse.activeLessonId !== searchParams.get("lesson_id")) {
-          dispatch(
-            coursesActions.changeActiveLesson({
-              courseId: id,
-              activeLessonId: searchParams.get("lesson_id"),
-            })
-          );
-        }
+        setSearchParams(`lesson_id=${courseDetails.lessons[0].id}`);
       }
+
+      changeActiveLesson(courseId);
     }
-    // eslint-disable-next-line
   }, [location]);
 
   return { idSearchParams, currentCourse };

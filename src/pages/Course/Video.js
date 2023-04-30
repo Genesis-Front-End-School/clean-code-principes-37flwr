@@ -27,8 +27,6 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
     if (timing) {
       videoRef.current.currentTime = timing;
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeLessonId]);
 
   // Handle hotkeys for playback speed
@@ -49,7 +47,6 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
     return () => {
       window.removeEventListener("keydown", handlePlaybackChange);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Store current video timing on component unmount and move current video to pip
@@ -76,7 +73,6 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
         })
       );
     };
-    // eslint-disable-next-line
   }, []);
 
   const moveToPip = () => {
@@ -123,7 +119,15 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
     }
   }
 
-  return videoLinkPresent ? (
+  if (!videoLinkPresent) {
+    return (
+      <div className="course__lessons__video--not-found">
+        Sorry... There is no such video
+      </div>
+    );
+  }
+
+  return (
     <div className="course__lessons__video">
       {!openedInPip && (
         <Button
@@ -138,10 +142,6 @@ const Video = ({ activeLessonId, courseDetails, lessonIdRef, videoRef }) => {
         ref={videoRef}
         className="course__lessons__video__elem"
       ></video>
-    </div>
-  ) : (
-    <div className="course__lessons__video--not-found">
-      Sorry... There is no such video
     </div>
   );
 };

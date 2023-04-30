@@ -61,7 +61,6 @@ const Course = () => {
         setLessonId(courseDetails.lessons[0].id);
       }
     }
-    // eslint-disable-next-line
   }, [idSearchParams, currentCourse]);
 
   // Init new course in redux state if there is no such in there
@@ -74,7 +73,6 @@ const Course = () => {
         })
       );
     }
-    // eslint-disable-next-line
   }, [courseDetails]);
 
   return (
