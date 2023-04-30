@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button } from 'react-bootstrap';
 import { ReduxCourse } from '../../interfaces/ReduxCourses.interface';
 
-interface IProps {
+interface IVideoProps {
   activeLessonId: string;
   courseDetails: ICourseWithLessons;
   lessonIdRef: React.RefObject<string>;
@@ -22,7 +22,7 @@ const Video = ({
   courseDetails,
   lessonIdRef,
   videoRef,
-}: IProps) => {
+}: IVideoProps) => {
   const [openedInPip, setOpenedInPip] = useState(false);
   const [videoLinkPresent, setVideoLinkPresent] = useState(true);
   let [searchParams, _] = useSearchParams();

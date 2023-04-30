@@ -5,11 +5,11 @@ import Content from './Content';
 import '../styles.scss';
 import { ICourse } from '../../../interfaces/Course.interface';
 
-interface IProps {
+interface ICourseCardProps {
   data: ICourse;
 }
 
-const CourseCard = ({ data }: IProps) => {
+const CourseCard = ({ data }: ICourseCardProps) => {
   const { meta } = data;
   const [isHovering, setIsHovering] = useState<boolean>(false);
 

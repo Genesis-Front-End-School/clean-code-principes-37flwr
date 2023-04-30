@@ -2,7 +2,7 @@ import React from 'react';
 import { ICourseWithLessons } from '../../interfaces/Course.interface';
 import Lesson from './Lesson';
 
-interface IProps {
+interface IDetailsProps {
   courseDetails: ICourseWithLessons;
   activeLessonId: string;
   handleChange: (arg0: string) => void;
@@ -12,7 +12,7 @@ const Details = ({
   courseDetails,
   activeLessonId,
   handleChange,
-}: IProps): JSX.Element => {
+}: IDetailsProps): JSX.Element => {
   return (
     <>
       {courseDetails.lessons

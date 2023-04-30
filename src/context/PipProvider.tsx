@@ -14,22 +14,22 @@ import { coursesActions } from '../store/ducks/courses';
 import { HOTKEY_PARAMS } from '../constants/hotkeys';
 import './styles.scss';
 
-type Context = ContextFunction | null;
-type ContextFunction = (newVideo: Video | null) => void;
+type IContext = IContextFunction | null;
+type IContextFunction = (newVideo: IVideo | null) => void;
 
-export const PipContext = createContext<Context>(null);
+export const PipContext = createContext<IContext>(null);
 
-type Video = {
+interface IVideo {
   courseId: string;
   link: string;
   lessonId: string;
   autoplay?: boolean;
   timing?: number;
   handleOnClose?: (arg0: HTMLMediaElement) => void;
-};
+}
 
 const PipProvider = ({ children }: PropsWithChildren) => {
-  const [video, setVideo] = useState<Video | null>(null);
+  const [video, setVideo] = useState<IVideo | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const dispatch = useDispatch();
 
@@ -71,7 +71,7 @@ const PipProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   // Handle change of pip current video
-  const updatePip = (newVideo: Video | null): void => {
+  const updatePip = (newVideo: IVideo | null): void => {
     if (video && videoRef.current) {
       dispatch(
         coursesActions.changeProgress({

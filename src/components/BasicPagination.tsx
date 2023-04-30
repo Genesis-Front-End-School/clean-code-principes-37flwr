@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 
-interface IProps {
+interface IBasicPaginationProps {
   elementsPerPage: number;
   totalElements: number;
   paginate: (arg0: number) => void;
@@ -13,7 +13,7 @@ const BasicPagination = ({
   totalElements,
   paginate,
   activePage,
-}: IProps) => {
+}: IBasicPaginationProps) => {
   const memoizedPageNumbers = useMemo(
     () => getPageNumbers(totalElements, elementsPerPage),
     [totalElements, elementsPerPage]

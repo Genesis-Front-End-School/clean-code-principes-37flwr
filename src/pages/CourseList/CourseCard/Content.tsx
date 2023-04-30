@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 import { ICourse } from '../../../interfaces/Course.interface';
 
-interface IProps {
+interface IContentProps {
   data: ICourse;
 }
 
-const Content = ({ data }: IProps) => {
+const Content = ({ data }: IContentProps) => {
   const { id, description, title, lessonsCount, tags, rating } = data;
   const navigate = useNavigate();
 

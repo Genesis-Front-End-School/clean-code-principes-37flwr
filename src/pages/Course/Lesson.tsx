@@ -5,13 +5,13 @@ import './styles.scss';
 import { fancyTimeFormat } from '../../utils/formatters';
 import { ILesson } from '../../interfaces/Course.interface';
 
-interface IProps {
+interface ILessonProps {
   data: ILesson;
   activeLesson: string;
   handleClick: (arg0: string) => void;
 }
 
-const Lesson = ({ data, activeLesson, handleClick }: IProps) => {
+const Lesson = ({ data, activeLesson, handleClick }: ILessonProps) => {
   const { id, duration, previewImageLink, status, order, title } = data;
   const handleClickIfUnlocked = () => {
     if (status === 'unlocked') handleClick(id);

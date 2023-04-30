@@ -3,12 +3,12 @@ import React, { useRef } from 'react';
 import ImageNotFound from '../../../assets/not-found-img.png';
 import { ICourseVideoPreview } from '../../../interfaces/Course.interface';
 
-interface IProps {
+interface IVideoProps {
   isHovering: boolean;
   videoPreview: ICourseVideoPreview;
 }
 
-const Video = ({ isHovering, videoPreview }: IProps) => {
+const Video = ({ isHovering, videoPreview }: IVideoProps) => {
   const previewImageLink = videoPreview?.previewImageLink;
   const videoRef = useRef<HTMLVideoElement>(null);
 

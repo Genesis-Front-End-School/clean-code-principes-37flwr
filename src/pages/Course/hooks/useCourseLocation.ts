@@ -5,11 +5,11 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { ICourseWithLessons } from '../../../interfaces/Course.interface';
 import { ReduxCourse } from '../../../interfaces/ReduxCourses.interface';
 
-interface IProps {
+interface ICourseLocationProps {
   courseDetails: ICourseWithLessons;
 }
 
-const useCourseLocation = ({ courseDetails }: IProps) => {
+const useCourseLocation = ({ courseDetails }: ICourseLocationProps) => {
   const location = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
   const { id: courseId } = useParams();
