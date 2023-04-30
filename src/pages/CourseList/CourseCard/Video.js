@@ -1,8 +1,8 @@
 import Hls from "hls.js";
 import React, { useRef } from "react";
-import ImageNotFound from "../../assets/not-found-img.png";
+import ImageNotFound from "../../../assets/not-found-img.png";
 
-const CourseCardVideo = ({ isHovering, videoPreview }) => {
+const Video = ({ isHovering, videoPreview }) => {
   const previewImageLink = videoPreview?.previewImageLink;
   const videoRef = useRef();
 
@@ -37,4 +37,4 @@ const CourseCardVideo = ({ isHovering, videoPreview }) => {
   );
 };
 
-export default CourseCardVideo;
+export default Video;

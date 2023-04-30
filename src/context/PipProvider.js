@@ -5,8 +5,7 @@ import toast from "react-hot-toast";
 import Hls from "hls.js";
 
 import { coursesActions } from "../store/ducks/courses";
-import { hotkeysParams } from "../schemes/hotkeysParams";
-
+import { HOTKEY_PARAMS } from "../constants/hotkeys";
 import "./styles.scss";
 
 export const PipContext = createContext();
@@ -34,7 +33,7 @@ const PipProvider = ({ children }) => {
   // Handle hotkeys for playback speed
   useEffect(() => {
     const handlePlaybackChange = (event) => {
-      const newPlaybackSpeed = hotkeysParams.find(
+      const newPlaybackSpeed = HOTKEY_PARAMS.find(
         (h) => h.key === event.key
       ).action;
       videoRef.current.playbackRate = newPlaybackSpeed;

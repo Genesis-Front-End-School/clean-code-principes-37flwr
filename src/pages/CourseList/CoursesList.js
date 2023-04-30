@@ -1,12 +1,12 @@
-import { useSearchParams } from "react-router-dom";
 import useSwr from "swr";
-
-import BasicPagination from "../../components/BasicPagination";
 import {
   COURSES_FETCH_LINK,
   TOKEN_FETCH_LINK,
-} from "../../constants/ApiCallLinks";
+} from "../../constants/apiCallLinks";
+import { COURSES_PER_PAGE } from "../../constants/pagination";
+import BasicPagination from "../../components/BasicPagination";
 import CourseCard from "./CourseCard";
+import usePagination from "./hooks/usePagination";
 
 const CoursesList = () => {
   const { data: token } = useSwr({
@@ -17,23 +17,7 @@ const CoursesList = () => {
     params: [["token", token.token]],
   }));
 
-  let [searchParams, setSearchParams] = useSearchParams();
-  const coursesPerPage = 10;
-  let currentPage = searchParams.get("page");
-  if (!currentPage) {
-    currentPage = 1;
-  }
-
-  const idxOfLastCourse = currentPage * coursesPerPage;
-  const idxOfFirstCourse = idxOfLastCourse - coursesPerPage;
-  const currentCourses = courses?.courses.slice(
-    idxOfFirstCourse,
-    idxOfLastCourse
-  );
-
-  const paginate = (number) => {
-    setSearchParams(`page=${number}`);
-  };
+  const { currentCourses, currentPage, paginate } = usePagination(courses);
 
   return (
     <>
@@ -43,7 +27,7 @@ const CoursesList = () => {
         ))}
       </section>
       <BasicPagination
-        elementsPerPage={coursesPerPage}
+        elementsPerPage={COURSES_PER_PAGE}
         totalElements={courses.courses.length}
         paginate={paginate}
         active={currentPage}
