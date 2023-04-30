@@ -12,45 +12,35 @@ interface IProps {
 const useCourseLocation = ({ courseDetails }: IProps) => {
   const location = useLocation();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { id } = useParams();
+  const { id: courseId } = useParams();
 
   const dispatch = useAppDispatch();
   const { courses } = useAppSelector((state) => state.Courses);
 
-  const idSearchParams = searchParams.get('lesson_id');
+  const idSearchParams = searchParams.get('lesson_id')!;
   let currentCourse: ReduxCourse = courses?.find(
-    (c: ReduxCourse) => c.courseId === id
+    (c: ReduxCourse) => c.courseId === courseId
   );
+
+  const changeActiveLesson = (courseId: string) => {
+    dispatch(
+      coursesActions.changeActiveLesson({
+        courseId: courseId,
+        activeLessonId: idSearchParams,
+      })
+    );
+  };
 
   useEffect(() => {
     if (courseDetails) {
-      if (!idSearchParams) {
-        if (currentCourse) {
-          setSearchParams(`lesson_id=${currentCourse.activeLessonId}`);
-        } else {
-          if (id)
-            dispatch(
-              coursesActions.changeActiveLesson({
-                courseId: id,
-                activeLessonId: courseDetails.lessons[0].id,
-              })
-            );
-          setSearchParams(`lesson_id=${courseDetails.lessons[0].id}`);
-        }
+      if (currentCourse) {
+        setSearchParams(`lesson_id=${currentCourse.activeLessonId}`);
       } else {
-        if (currentCourse.activeLessonId !== searchParams.get('lesson_id')) {
-          const activeLessonId = searchParams.get('lesson_id');
-          if (id && activeLessonId)
-            dispatch(
-              coursesActions.changeActiveLesson({
-                courseId: id,
-                activeLessonId,
-              })
-            );
-        }
+        setSearchParams(`lesson_id=${courseDetails.lessons[0].id}`);
       }
+
+      courseId && changeActiveLesson(courseId);
     }
-    // eslint-disable-next-line
   }, [location]);
 
   return { idSearchParams, currentCourse };

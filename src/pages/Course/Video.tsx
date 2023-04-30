@@ -149,7 +149,15 @@ const Video = ({
     }
   }
 
-  return videoLinkPresent ? (
+  if (!videoLinkPresent) {
+    return (
+      <div className="course__lessons__video--not-found">
+        Sorry... There is no such video
+      </div>
+    );
+  }
+
+  return (
     <div className="course__lessons__video">
       {!openedInPip && (
         <Button
@@ -164,10 +172,6 @@ const Video = ({
         ref={videoRef}
         className="course__lessons__video__elem"
       ></video>
-    </div>
-  ) : (
-    <div className="course__lessons__video--not-found">
-      Sorry... There is no such video
     </div>
   );
 };

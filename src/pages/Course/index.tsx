@@ -100,7 +100,6 @@ const Course = () => {
                 activeLessonId={idSearchParams}
                 handleChange={handleChangeLesson}
               />
-              )
             </div>
           </>
         )}
