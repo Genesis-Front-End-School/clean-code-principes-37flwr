@@ -11,10 +11,10 @@ interface ICourseCardProps {
 
 const CourseCard = ({ data }: ICourseCardProps) => {
   const { meta } = data;
-  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isHovering, setIsHovering] = useState(false);
 
-  const handleHover = (bool: boolean) => {
-    setIsHovering(bool);
+  const handleHover = (isHover: boolean) => {
+    setIsHovering(isHover);
   };
 
   return (

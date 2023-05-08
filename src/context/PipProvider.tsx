@@ -25,7 +25,7 @@ interface IVideo {
   lessonId: string;
   autoplay?: boolean;
   timing?: number;
-  handleOnClose?: (arg0: HTMLMediaElement) => void;
+  handleOnClose?: (mediaElement: HTMLMediaElement) => void;
 }
 
 const PipProvider = ({ children }: PropsWithChildren) => {

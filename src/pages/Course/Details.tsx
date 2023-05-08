@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ICourseWithLessons } from '../../interfaces/Course.interface';
 import Lesson from './Lesson';
 
@@ -8,11 +8,11 @@ interface IDetailsProps {
   handleChange: (arg0: string) => void;
 }
 
-const Details = ({
+const Details: FC<IDetailsProps> = ({
   courseDetails,
   activeLessonId,
   handleChange,
-}: IDetailsProps): JSX.Element => {
+}) => {
   return (
     <>
       {courseDetails.lessons

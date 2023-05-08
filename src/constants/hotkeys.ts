@@ -6,9 +6,4 @@ export const HOTKEY_PARAMS = [
   { key: '5', action: '2' },
 ];
 
-export interface IHotkeyParam {
-  key: string;
-  action: string;
-}
-
-export type IHotkeyParams = Array<IHotkeyParam>;
+export type IHotkeyParams = Array<{ key: string; action: string }>;
