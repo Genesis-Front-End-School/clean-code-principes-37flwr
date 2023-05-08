@@ -24,7 +24,7 @@ const CoursesList = () => {
 
   return (
     <>
-      <section className="courses-list--container">
+      <section className="courses-list--container" data-testid="courses-list">
         {currentCourses?.map((course: ICourse) => (
           <CourseCard key={course.id} data={course} />
         ))}

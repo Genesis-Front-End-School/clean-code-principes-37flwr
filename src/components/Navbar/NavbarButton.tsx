@@ -9,7 +9,7 @@ interface INavbarButtonProps {
 
 const NavbarButton = ({ label, path }: INavbarButtonProps) => {
   return (
-    <Nav.Item>
+    <Nav.Item data-testid="navbar-button">
       <Link className="basic-navbar__link" to={path}>
         <Button>{label}</Button>
       </Link>

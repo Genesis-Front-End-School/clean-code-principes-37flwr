@@ -12,17 +12,17 @@ import types from './actionTypes';
 
 const getCourses = (state: ICoursesState) => state.Courses;
 
-type IChangeProgressSaga = {
+export interface IChangeProgressSaga {
   payload: IProgress;
   type: string;
-};
+}
 
-type ILessonSaga = {
+export interface ILessonSaga {
   payload: IActiveLesson;
   type: string;
-};
+}
 
-function* changeProgressSaga({ payload }: IChangeProgressSaga): any {
+export function* changeProgressSaga({ payload }: IChangeProgressSaga): any {
   try {
     const { courseId, lessonId, timing } = payload;
     const courses: any = yield select(getCourses);
@@ -66,7 +66,7 @@ function* changeProgressSaga({ payload }: IChangeProgressSaga): any {
   }
 }
 
-function* changeActiveLessonSaga({ payload }: ILessonSaga): any {
+export function* changeActiveLessonSaga({ payload }: ILessonSaga): any {
   try {
     const courses = yield select(getCourses);
     const { courseId, activeLessonId } = payload;
@@ -81,6 +81,7 @@ function* changeActiveLessonSaga({ payload }: ILessonSaga): any {
           c.courseId === courseId ? { ...c, activeLessonId: activeLessonId } : c
         ),
       ];
+
       yield put(actions.changeActiveLessonSuccess(modifiedActiveLesson));
     } else {
       yield put(actions.apiError());
@@ -90,8 +91,7 @@ function* changeActiveLessonSaga({ payload }: ILessonSaga): any {
   }
 }
 
-function* initCourseSaga({ payload }: ILessonSaga): any {
-  console.log(payload);
+export function* initCourseSaga({ payload }: ILessonSaga): any {
   try {
     const courses = yield select(getCourses);
     const { courseId, activeLessonId } = payload;

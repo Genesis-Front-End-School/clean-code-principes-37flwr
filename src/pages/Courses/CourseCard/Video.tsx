@@ -12,15 +12,16 @@ const Video = ({ isHovering, videoPreview }: IVideoProps) => {
   const previewImageLink = videoPreview?.previewImageLink;
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  if (Hls.isSupported() && videoPreview && videoRef.current) {
+  if (Hls.isSupported() && videoPreview) {
     var hls = new Hls();
     hls.loadSource(videoPreview.link);
-    hls.attachMedia(videoRef.current);
+    hls.attachMedia(videoRef.current!);
   }
 
   if (isHovering) {
     return (
       <video
+        data-testid="video-hover"
         autoPlay
         controls={false}
         ref={videoRef}
@@ -31,7 +32,7 @@ const Video = ({ isHovering, videoPreview }: IVideoProps) => {
   }
 
   return previewImageLink ? (
-    <picture>
+    <picture data-testid="preview-img">
       <source
         srcSet={previewImageLink.replace('preview', '') + 'cover.webp'}
         type="image/webp"
@@ -39,7 +40,12 @@ const Video = ({ isHovering, videoPreview }: IVideoProps) => {
       <img className="courses-list__card__img" src={ImageNotFound} alt="" />
     </picture>
   ) : (
-    <img className="courses-list__card__img" src={ImageNotFound} alt="" />
+    <img
+      data-testid="placeholder-preview-img"
+      className="courses-list__card__img"
+      src={ImageNotFound}
+      alt=""
+    />
   );
 };
 

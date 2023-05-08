@@ -29,7 +29,6 @@ const Video = ({
 
   const { id } = useParams();
   const updatePip = usePip();
-  console.log(updatePip && typeof updatePip);
 
   const dispatch = useAppDispatch();
   const { courses } = useAppSelector((state) => state.Courses);
@@ -87,7 +86,7 @@ const Video = ({
               autoplay: true,
             });
         }
-        if (id && lessonIdRef.current)
+        if (id && lessonIdRef.current) {
           dispatch(
             coursesActions.changeProgress({
               courseId: id,
@@ -95,6 +94,7 @@ const Video = ({
               timing: localVideoRef.currentTime,
             })
           );
+        }
       }
     };
     // eslint-disable-next-line
@@ -138,7 +138,8 @@ const Video = ({
   ) {
     var hls = new Hls();
     const link = getLinkFromCourse(courseDetails);
-    if (link && videoRef) {
+
+    if (link) {
       hls.loadSource(link);
       hls.attachMedia(videoRef.current);
       videoRef.current.onplay = () => updatePip?.(null);
@@ -151,23 +152,28 @@ const Video = ({
 
   if (!videoLinkPresent) {
     return (
-      <div className="course__lessons__video--not-found">
+      <div
+        className="course__lessons__video--not-found"
+        data-testid="video-fallback"
+      >
         Sorry... There is no such video
       </div>
     );
   }
 
   return (
-    <div className="course__lessons__video">
+    <div className="course__lessons__video" data-testid="video-element">
       {!openedInPip && (
         <Button
           className="course__lessons__video__btn"
+          data-testid="move-to-pip-btn"
           onClick={() => moveToPip()}
         >
           Open in pip
         </Button>
       )}
       <video
+        data-testid="video-player"
         controls
         ref={videoRef}
         className="course__lessons__video__elem"

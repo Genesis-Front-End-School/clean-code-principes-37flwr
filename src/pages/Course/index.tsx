@@ -6,7 +6,7 @@ import PlaybackSpeed from './PlaybackSpeed';
 import Video from './Video';
 import Details from './Details';
 import { coursesActions } from '../../store/ducks/courses';
-import useCourseLocation from './hooks/useCourseLocation';
+import { useCourseLocation } from './hooks/useCourseLocation';
 import {
   COURSES_FETCH_LINK,
   TOKEN_FETCH_LINK,
@@ -85,25 +85,23 @@ const Course = () => {
 
   return (
     <div className="course page-layout">
-      <div className="course__lessons">
-        {idSearchParams && (
-          <>
-            <Video
-              activeLessonId={idSearchParams}
+      {idSearchParams && (
+        <div className="course__lessons" data-testid="course-lessons">
+          <Video
+            activeLessonId={idSearchParams}
+            courseDetails={courseDetails}
+            lessonIdRef={lessonIdRef}
+            videoRef={videoRef}
+          />
+          <div className="course__lessons__list">
+            <Details
               courseDetails={courseDetails}
-              lessonIdRef={lessonIdRef}
-              videoRef={videoRef}
+              activeLessonId={idSearchParams}
+              handleChange={handleChangeLesson}
             />
-            <div className="course__lessons__list">
-              <Details
-                courseDetails={courseDetails}
-                activeLessonId={idSearchParams}
-                handleChange={handleChangeLesson}
-              />
-            </div>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
       <div className="course__details">{courseDetails.title}</div>
       <PlaybackSpeed params={HOTKEY_PARAMS} />
     </div>

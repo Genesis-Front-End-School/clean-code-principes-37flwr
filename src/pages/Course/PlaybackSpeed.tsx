@@ -14,10 +14,15 @@ const PlaybackSpeed = ({ params }: IPlaybackSpeedProps) => {
   return (
     <div className="playback-speed">
       {params.map((hParams) => (
-        <div className="playback-speed__elem" key={hParams.key}>
+        <div
+          className="playback-speed__elem"
+          key={hParams.key}
+          data-testid="playback-speed-option"
+        >
           <Button
             className="playback-speed__elem__btn"
             onClick={() => handleClick(hParams.key)}
+            data-testid="playback-speed-btn"
           >
             Ctrl + {hParams.key}
           </Button>

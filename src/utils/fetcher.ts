@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-interface IFetchError extends Error {
+export interface IFetchError extends Error {
   response?: string;
   status?: number;
 }
 interface IFetchParams {
   url: string;
-  params: Array<IParam>;
+  params?: Array<IParam>;
 }
 
 type IParam = Array<string>;
@@ -22,6 +22,8 @@ export async function fetcher({ url, params }: IFetchParams) {
     const rsp = await axios.get(url, params && { params: paramsObj });
     if (rsp.status === 200) {
       return rsp.data;
+    } else {
+      return null;
     }
   } catch (err: any) {
     const error: IFetchError = new Error(
