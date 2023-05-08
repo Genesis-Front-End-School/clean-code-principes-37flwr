@@ -18,6 +18,7 @@ const Lesson = ({ data, activeLesson, handleClick }: ILessonProps) => {
   };
   return (
     <div
+      data-testid="lesson"
       className={cn(
         'lesson',
         activeLesson === id && 'lesson--active',
@@ -27,7 +28,11 @@ const Lesson = ({ data, activeLesson, handleClick }: ILessonProps) => {
       {status !== 'unlocked' && (
         <img className="lesson--locked__img" src={Locked} alt="lesson locked" />
       )}
-      <div onClick={handleClickIfUnlocked} className="lesson__details">
+      <div
+        onClick={handleClickIfUnlocked}
+        className="lesson__details"
+        data-testid="change-lesson-btn"
+      >
         <div className="lesson__details--container">
           <img
             className="lesson__details__img"

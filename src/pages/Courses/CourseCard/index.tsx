@@ -22,6 +22,7 @@ const CourseCard = ({ data }: ICourseCardProps) => {
       className="fs-grid-elem courses-list__card"
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
+      data-testid="course-card"
     >
       <Video isHovering={isHovering} videoPreview={meta.courseVideoPreview} />
       <Content data={data} />

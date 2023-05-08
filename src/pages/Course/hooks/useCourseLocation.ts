@@ -46,4 +46,4 @@ const useCourseLocation = ({ courseDetails }: ICourseLocationProps) => {
   return { idSearchParams, currentCourse };
 };
 
-export default useCourseLocation;
+export { useCourseLocation };

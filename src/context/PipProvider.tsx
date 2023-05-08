@@ -56,7 +56,7 @@ const PipProvider = ({ children }: PropsWithChildren) => {
       )?.action;
       if (newPlaybackSpeed) {
         if (videoRef.current) {
-          videoRef.current.playbackRate = parseInt(newPlaybackSpeed);
+          videoRef.current.playbackRate = Number(newPlaybackSpeed);
         }
         toast.success(`Playback speed changed to ${newPlaybackSpeed}x`, {
           duration: 2000,
@@ -92,7 +92,11 @@ const PipProvider = ({ children }: PropsWithChildren) => {
       {video && (
         <div className="pip">
           <div className="pip--container">
-            <Button className="pip__btn" onClick={() => updatePip(null)}>
+            <Button
+              className="pip__btn"
+              onClick={() => updatePip(null)}
+              data-testid="update-pip-btn"
+            >
               x
             </Button>
             <video className="pip__video" controls ref={videoRef}></video>

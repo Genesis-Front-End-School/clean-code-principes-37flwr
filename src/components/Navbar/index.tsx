@@ -4,9 +4,14 @@ import { navbarButtons } from '../../constants/navbarButtons';
 import './styles.scss';
 
 const Navbar = () => (
-  <Nav variant="pills" defaultActiveKey="/courses" className="basic-navbar">
+  <Nav
+    variant="pills"
+    defaultActiveKey="/courses"
+    className="basic-navbar"
+    data-testid="navbar"
+  >
     {navbarButtons.map(({ label, path }) => (
-      <NavbarButton label={label} path={path} />
+      <NavbarButton key={label} label={label} path={path} />
     ))}
   </Nav>
 );

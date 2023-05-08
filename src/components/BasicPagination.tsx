@@ -31,12 +31,13 @@ const BasicPagination = ({
   }
 
   return (
-    <Pagination>
+    <Pagination data-testid="pagination">
       {memoizedPageNumbers.map((number) => (
         <Pagination.Item
           onClick={() => paginate(number)}
           key={number}
           active={number === activePage}
+          data-testid="pagination-elem"
         >
           {number}
         </Pagination.Item>

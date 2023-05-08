@@ -30,13 +30,18 @@ const Content = ({ data }: IContentProps) => {
         </div>
         <div className="courses-list__card__details__tags--container">
           {tags.map((tag) => (
-            <Badge bg="light" text="dark" key={tag}>
+            <Badge bg="light" text="dark" key={tag} data-testid="badge-test">
               {tag}
             </Badge>
           ))}
         </div>
       </div>
-      <Button variant="primary" size="lg" onClick={() => navigate(id)}>
+      <Button
+        variant="primary"
+        size="lg"
+        onClick={() => navigate(id)}
+        data-testid="content-btn"
+      >
         Details
       </Button>
     </Card.Body>
