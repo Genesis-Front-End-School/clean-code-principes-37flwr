@@ -1,4 +1,4 @@
-@import "../../library";
+@import 'shared/styles/library';
 
 .course {
   display: flex;
@@ -76,90 +76,6 @@
         background-color: rgba(0, 0, 0, 0.5);
         -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
       }
-    }
-  }
-}
-
-.lesson {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 10px;
-
-  &__details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-
-    &--container {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    &__img {
-      height: 40px;
-    }
-
-    &__title {
-      all: unset;
-      font-size: 18px;
-    }
-
-    &__duration {
-      all: unset;
-      font-size: 18px;
-      color: $light-bg-color;
-    }
-  }
-
-  &--locked {
-    opacity: 0.2;
-    cursor: not-allowed;
-
-    &__img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 20px;
-    }
-  }
-
-  &--active {
-    background-color: rgb(192, 213, 236);
-  }
-
-  &__underline {
-    width: 75%;
-
-    border-bottom: 1px solid $black-color;
-  }
-}
-
-.playback-speed {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: rgb(224, 224, 224);
-  padding: 10px;
-  &__elem {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-
-    &__btn {
-      min-width: 75px;
-    }
-
-    &__text {
-      all: unset;
     }
   }
 }
