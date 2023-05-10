@@ -1,0 +1,20 @@
+.playback-speed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(224, 224, 224);
+  padding: 10px;
+  &__elem {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    &__btn {
+      min-width: 75px;
+    }
+
+    &__text {
+      all: unset;
+    }
+  }
+}
