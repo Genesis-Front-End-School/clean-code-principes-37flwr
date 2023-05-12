@@ -3,6 +3,8 @@ import React, { useRef } from 'react';
 import ImageNotFound from 'shared/assets/not-found-img.png';
 import { ICourseVideoPreview } from 'shared/interfaces/Course.interface';
 
+import './styles.scss';
+
 interface IVideoProps {
   isHovering: boolean;
   videoPreview: ICourseVideoPreview;
@@ -25,7 +27,7 @@ const Video = ({ isHovering, videoPreview }: IVideoProps) => {
         autoPlay
         controls={false}
         ref={videoRef}
-        className="courses-list__card__video"
+        className="card-meta__video"
         muted
       ></video>
     );
@@ -37,12 +39,12 @@ const Video = ({ isHovering, videoPreview }: IVideoProps) => {
         srcSet={previewImageLink.replace('preview', '') + 'cover.webp'}
         type="image/webp"
       />
-      <img className="courses-list__card__img" src={ImageNotFound} alt="" />
+      <img className="card-meta__img" src={ImageNotFound} alt="" />
     </picture>
   ) : (
     <img
       data-testid="placeholder-preview-img"
-      className="courses-list__card__img"
+      className="card-meta__img"
       src={ImageNotFound}
       alt=""
     />

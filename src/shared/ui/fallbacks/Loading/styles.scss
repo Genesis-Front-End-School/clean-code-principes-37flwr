@@ -1,8 +1,15 @@
 @import 'shared/styles/library';
+@import 'shared/styles/theme';
 
 .loading {
   height: calc(100vh - $header-height);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__spinner {
+    @include theme-aware($themes) {
+      background-color: themed('background-secondary');
+    }
+  }
 }

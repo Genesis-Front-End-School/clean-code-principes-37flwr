@@ -1,4 +1,13 @@
-@import "./library";
+@import './library';
+@import './theme';
+
+* {
+  transition: all 0.1s ease;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -ms-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+}
 
 .page-layout {
   width: 90%;
@@ -7,4 +16,18 @@
 
 .full-page {
   height: 100vh;
+}
+
+.theme-light {
+  background-color: map-get(
+    $map: map-get($map: $themes, $key: 'light'),
+    $key: 'background-primary'
+  );
+}
+
+.theme-dark {
+  background-color: map-get(
+    $map: map-get($map: $themes, $key: 'dark'),
+    $key: 'background-primary'
+  );
 }

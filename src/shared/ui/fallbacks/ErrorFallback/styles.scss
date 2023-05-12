@@ -1,19 +1,26 @@
+@import 'shared/styles/theme';
+
 .error-fallback {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  &__text {
-    font-size: 15px;
-  }
-
-  &__buttons {
+  @include theme-aware($themes) {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: themed('background-primary');
 
-    &__link {
-      text-decoration: none;
+    &__text {
+      font-size: 15px;
+      color: themed('background-secondary');
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 20px;
+      color: themed('background-secondary');
+
+      &__link {
+        text-decoration: none;
+      }
     }
   }
 }

@@ -8,12 +8,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Toaster } from 'react-hot-toast';
 
 import AppRoutes from 'pages';
-import Navbar from 'shared/ui/Navbar';
+import Navbar from 'widgets/Navbar';
 import ErrorFallback from 'shared/ui/fallbacks/ErrorFallback';
 import Loading from 'shared/ui/fallbacks/Loading';
 
 import { fetcher } from 'shared/lib/fetcher';
 import ContextProviders from './context';
+import ThemeProvider from './theme';
 
 import 'shared/styles/styles.scss';
 
@@ -30,15 +31,17 @@ function App() {
           }}
         >
           <BrowserRouter>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <Navbar />
-              <ContextProviders>
-                <Suspense fallback={<Loading />}>
-                  <AppRoutes />
-                </Suspense>
-                <Toaster />
-              </ContextProviders>
-            </ErrorBoundary>
+            <ThemeProvider>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Navbar />
+                <ContextProviders>
+                  <Suspense fallback={<Loading />}>
+                    <AppRoutes />
+                  </Suspense>
+                  <Toaster />
+                </ContextProviders>
+              </ErrorBoundary>
+            </ThemeProvider>
           </BrowserRouter>
         </SWRConfig>
       </PersistGate>

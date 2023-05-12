@@ -21,7 +21,7 @@ const CourseCard = ({ data }: ICourseCardProps) => {
 
   return (
     <Card
-      className="fs-grid-elem courses-list__card"
+      className="fs-grid-elem course-card"
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
       data-testid="course-card"

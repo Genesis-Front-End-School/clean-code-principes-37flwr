@@ -4,6 +4,7 @@ import { useFetchAllCourses } from 'shared/api/useFetchAllCourses';
 import BasicPagination from 'shared/ui/BasicPagination';
 import { COURSES_PER_PAGE } from 'shared/constants/pagination';
 import { ICourse } from 'shared/interfaces/Course.interface';
+import './styles.scss';
 
 const CoursesList = () => {
   const { courses } = useFetchAllCourses();

@@ -9,6 +9,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useFetchCourse } from 'shared/api/useFetchCourse';
 import { HOTKEY_PARAMS } from 'shared/constants/hotkeys';
 import { ReduxCourse } from 'shared/interfaces/ReduxCourses.interface';
+import './styles.scss';
 
 const CourseContent = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -73,16 +74,16 @@ const CourseContent = () => {
   }, [courseDetails]);
 
   return (
-    <>
+    <div className="course-content">
       {idSearchParams && (
-        <div className="course__lessons" data-testid="course-lessons">
+        <div className="course-content__lessons" data-testid="course-lessons">
           <PrimaryVideo
             activeLessonId={idSearchParams}
             courseDetails={courseDetails}
             lessonIdRef={lessonIdRef}
             videoRef={videoRef}
           />
-          <div className="course__lessons__list">
+          <div className="course-content__lessons__list">
             <Details
               courseDetails={courseDetails}
               activeLessonId={idSearchParams}
@@ -91,9 +92,9 @@ const CourseContent = () => {
           </div>
         </div>
       )}
-      <div className="course__details">{courseDetails.title}</div>
+      <div className="course-content__details">{courseDetails.title}</div>
       <PlaybackSpeed params={HOTKEY_PARAMS} />
-    </>
+    </div>
   );
 };
 

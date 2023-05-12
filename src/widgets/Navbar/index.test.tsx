@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import Navbar from './index';
 import NavbarButton from './NavbarButton';
 
-import { navbarButtons } from '../../constants/navbarButtons';
+import { navbarButtons } from '../../shared/constants/navbarButtons';
 
 describe('Navbar component', () => {
   describe('Navbar container', () => {

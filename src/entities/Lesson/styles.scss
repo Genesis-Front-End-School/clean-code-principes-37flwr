@@ -1,64 +1,66 @@
-@import 'shared/styles/library';
+@import 'shared/styles/theme';
 
 .lesson {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 10px;
-
-  &__details {
+  @include theme-aware($themes) {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    cursor: pointer;
     border-radius: 10px;
-    padding: 10px;
-    width: 100%;
+    color: themed('background-secondary');
 
-    &--container {
+    &__details {
       display: flex;
-      gap: 10px;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100%;
+
+      &--container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      &__img {
+        height: 40px;
+      }
+
+      &__title {
+        all: unset;
+        font-size: 18px;
+      }
+
+      &__duration {
+        all: unset;
+        font-size: 18px;
+      }
     }
 
-    &__img {
-      height: 40px;
+    &--locked {
+      opacity: 0.2;
+      cursor: not-allowed;
+
+      &__img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 20px;
+      }
     }
 
-    &__title {
-      all: unset;
-      font-size: 18px;
+    &--active {
+      background-color: themed('light-highlight-color');
     }
 
-    &__duration {
-      all: unset;
-      font-size: 18px;
-      color: $light-bg-color;
+    &__underline {
+      width: 75%;
+
+      border-bottom: 1px solid themed('background-secondary');
     }
-  }
-
-  &--locked {
-    opacity: 0.2;
-    cursor: not-allowed;
-
-    &__img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 20px;
-    }
-  }
-
-  &--active {
-    background-color: rgb(192, 213, 236);
-  }
-
-  &__underline {
-    width: 75%;
-
-    border-bottom: 1px solid $black-color;
   }
 }

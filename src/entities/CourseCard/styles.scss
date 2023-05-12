@@ -1,0 +1,51 @@
+@import 'shared/styles/theme';
+
+.course-card {
+  overflow: hidden;
+  @include theme-aware($themes) {
+    background-color: themed('background-primary');
+  }
+}
+
+.card-meta {
+  &__video {
+    height: 250px;
+  }
+  &__img {
+    height: 250px;
+    width: 100%;
+  }
+}
+
+.card-content {
+  @include theme-aware($themes) {
+    &__title,
+    &__text {
+      color: themed('background-secondary');
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      row-gap: 7px;
+
+      &--container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      &__badge {
+        margin-top: 10px;
+        color: themed('background-primary');
+      }
+
+      &__tags--container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-row-gap: 5px;
+        grid-column-gap: 10px;
+      }
+    }
+  }
+}

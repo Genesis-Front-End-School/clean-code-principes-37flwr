@@ -1,20 +1,26 @@
+@import 'shared/styles/theme';
+
 .playback-speed {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: rgb(224, 224, 224);
-  padding: 10px;
-  &__elem {
+  @include theme-aware($themes) {
     display: flex;
-    gap: 20px;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid themed('color-primary');
+    border-radius: 10px;
+    padding: 10px;
+    &__elem {
+      display: flex;
+      gap: 20px;
+      align-items: center;
 
-    &__btn {
-      min-width: 75px;
-    }
+      &__btn {
+        min-width: 75px;
+      }
 
-    &__text {
-      all: unset;
+      &__text {
+        all: unset;
+        color: themed('background-secondary');
+      }
     }
   }
 }

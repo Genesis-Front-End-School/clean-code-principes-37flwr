@@ -1,6 +1,7 @@
 // Reducers
-import Courses from "../ducks/courses";
+import Courses from '../ducks/courses';
+import Theme from '../ducks/theme';
 
-const reducers = { Courses };
+const reducers = { Courses, Theme };
 
 export default reducers;

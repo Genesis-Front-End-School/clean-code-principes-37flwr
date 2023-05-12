@@ -1,81 +1,13 @@
+@import 'shared/styles/theme';
 @import 'shared/styles/library';
 
-.course {
+.course-page {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  &__lessons {
-    display: flex;
-    gap: 25px;
-    width: 100%;
-    min-height: 30vh;
-    max-height: 70vh;
-    align-items: flex-start;
-
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      max-height: 100%;
-    }
-
-    &__video {
-      height: auto;
-      width: 70%;
-      position: relative;
-
-      @media (max-width: 1024px) {
-        width: 100%;
-      }
-
-      &__btn {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        z-index: 2;
-      }
-
-      &__elem {
-        width: 100%;
-      }
-
-      &--not-found {
-        background-color: $dark-bg-color;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 30vh;
-        max-height: 70vh;
-        width: 70%;
-
-        @media (max-width: 1024px) {
-          width: 100%;
-        }
-      }
-    }
-
-    &__list {
-      display: flex;
-      flex-direction: column;
-      min-height: 30vh;
-      max-height: 70vh;
-      overflow: scroll;
-
-      @media (max-width: 1024px) {
-        gap: 0px;
-        width: 100%;
-      }
-
-      &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 10px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-      }
-    }
+  min-height: calc(100vh - $header-height);
+  box-sizing: border-box;
+  @include theme-aware($themes) {
+    background-color: themed('background-primary');
   }
 }

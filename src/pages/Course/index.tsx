@@ -4,7 +4,7 @@ import './styles.scss';
 
 const Course = () => {
   return (
-    <div className="course page-layout">
+    <div className="course-page page-layout">
       <CourseContent />
     </div>
   );

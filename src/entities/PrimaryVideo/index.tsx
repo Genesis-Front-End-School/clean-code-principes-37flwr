@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { Button } from 'react-bootstrap';
 import { ReduxCourse } from 'shared/interfaces/ReduxCourses.interface';
 
+import './styles.scss';
+
 interface IVideoProps {
   activeLessonId: string;
   courseDetails: ICourseWithLessons;
@@ -152,20 +154,17 @@ const PrimaryVideo = ({
 
   if (!videoLinkPresent) {
     return (
-      <div
-        className="course__lessons__video--not-found"
-        data-testid="video-fallback"
-      >
+      <div className="primary-video--not-found" data-testid="video-fallback">
         Sorry... There is no such video
       </div>
     );
   }
 
   return (
-    <div className="course__lessons__video" data-testid="video-element">
+    <div className="primary-video" data-testid="video-element">
       {!openedInPip && (
         <Button
-          className="course__lessons__video__btn"
+          className="primary-video__btn"
           data-testid="move-to-pip-btn"
           onClick={() => moveToPip()}
         >
@@ -176,7 +175,7 @@ const PrimaryVideo = ({
         data-testid="video-player"
         controls
         ref={videoRef}
-        className="course__lessons__video__elem"
+        className="primary-video__elem"
       ></video>
     </div>
   );
