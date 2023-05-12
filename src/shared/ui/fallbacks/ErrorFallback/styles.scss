@@ -1,0 +1,26 @@
+@import 'shared/styles/theme';
+
+.error-fallback {
+  @include theme-aware($themes) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: themed('background-primary');
+
+    &__text {
+      font-size: 15px;
+      color: themed('background-secondary');
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 20px;
+      color: themed('background-secondary');
+
+      &__link {
+        text-decoration: none;
+      }
+    }
+  }
+}

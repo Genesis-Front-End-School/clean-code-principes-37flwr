@@ -1,0 +1,52 @@
+$themes: (
+  light: (
+    background-primary: #fff,
+    background-secondary: #000,
+    color-primary: #444,
+    color-secondary: #777,
+    highlight-color: rgb(26, 105, 179),
+    light-highlight-color: rgb(181, 206, 231),
+  ),
+  dark: (
+    background-primary: #373737,
+    background-secondary: #fff,
+    color-primary: #777,
+    color-secondary: #444,
+    highlight-color: rgb(16, 46, 73),
+    light-highlight-color: rgb(25, 93, 160),
+  ),
+);
+
+/**
+ * theme-aware - Change color of a css property based on the currently active theme
+ *
+ * @param  {key}     CSS property
+ * @param  {color}   Color name defined in the themes under _color-palette.scss
+ *
+ * @example - @include theme-aware('background', 'color-background');
+ * @returns - background: #FFF;
+ */
+
+@mixin theme-aware($themes: $themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

@@ -1,7 +1,6 @@
 import types from './actionTypes';
 import {
   IActiveLesson,
-  ICourse,
   IProgress,
   IUpdateCourses,
 } from '../../interfaces/Courses.interfaces';

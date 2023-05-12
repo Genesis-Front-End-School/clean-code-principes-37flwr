@@ -1,0 +1,19 @@
+@import 'shared/styles/theme';
+@import 'shared/styles/library';
+
+.basic-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  height: $header-height;
+  padding-bottom: 15px;
+
+  &__link {
+    @include theme-aware($themes) {
+      color: themed('background-primary');
+    }
+    text-decoration: none;
+  }
+}
