@@ -7,10 +7,10 @@ import { usePip } from 'app/context/hooks';
 import { HOTKEY_PARAMS } from 'shared/constants/hotkeys';
 import { ICourseWithLessons } from 'shared/interfaces/Course.interface';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { Button } from 'react-bootstrap';
 import { ReduxCourse } from 'shared/interfaces/ReduxCourses.interface';
 
 import './styles.scss';
+import { PrimaryButton } from 'component-lib';
 
 interface IVideoProps {
   activeLessonId: string;
@@ -163,13 +163,13 @@ const PrimaryVideo = ({
   return (
     <div className="primary-video" data-testid="video-element">
       {!openedInPip && (
-        <Button
-          className="primary-video__btn"
-          data-testid="move-to-pip-btn"
+        <PrimaryButton
           onClick={() => moveToPip()}
+          dataTestId="move-to-pip-btn"
+          customClassName="primary-video__btn"
         >
           Open in pip
-        </Button>
+        </PrimaryButton>
       )}
       <video
         data-testid="video-player"

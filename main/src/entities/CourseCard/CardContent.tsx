@@ -1,7 +1,12 @@
 import React from 'react';
-import { Badge, Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import {
+  LessonsBadge,
+  StarRating,
+  PrimaryButton,
+  TagsBadge,
+} from 'component-lib';
 import { useNavigate } from 'react-router-dom';
-import StarRatings from 'react-star-ratings';
 import { ICourse } from 'shared/interfaces/Course.interface';
 import './styles.scss';
 
@@ -19,39 +24,19 @@ const CardContent = ({ data }: IContentProps) => {
       <Card.Text className="card-content__text">{description}</Card.Text>
       <div className="card-content__details">
         <div className="card-content__details--container">
-          <StarRatings
-            rating={rating}
-            starDimension="20px"
-            starSpacing="2px"
-            starRatedColor="rgb(230, 67, 47)"
+          <StarRating rating={rating} />
+          <LessonsBadge
+            lessonsCount={lessonsCount}
+            customClassName="card-content__details__badge"
           />
-          <Badge className="card-content__details__badge" bg="info">
-            {lessonsCount} lessons
-          </Badge>
         </div>
         <div className="card-content__details__tags--container">
           {tags.map((tag) => (
-            <Badge
-              bg="light"
-              text="dark"
-              key={tag}
-              data-testid="badge-test"
-              className="card-content__details__tags__item"
-            >
-              {tag}
-            </Badge>
+            <TagsBadge key={tag}>{tag}</TagsBadge>
           ))}
         </div>
       </div>
-      <Button
-        variant="primary"
-        size="lg"
-        onClick={() => navigate(id)}
-        data-testid="content-btn"
-        className="card-content__btn"
-      >
-        Details
-      </Button>
+      <PrimaryButton onClick={() => navigate(id)}>Details</PrimaryButton>
     </Card.Body>
   );
 };

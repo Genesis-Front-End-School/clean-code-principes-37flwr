@@ -2,10 +2,11 @@ import Nav from 'react-bootstrap/Nav';
 import NavbarButton from './NavbarButton';
 import { navbarButtons } from '../../shared/constants/navbarButtons';
 import './styles.scss';
-import ChangeThemeButton from 'entities/buttons/ChangeThemeButton';
+import { ChangeThemeButton } from 'component-lib';
 import { useTheme } from 'features/useTheme';
 
 const Navbar = () => {
+  console.log();
   const { theme, changeTheme } = useTheme();
   return (
     <Nav

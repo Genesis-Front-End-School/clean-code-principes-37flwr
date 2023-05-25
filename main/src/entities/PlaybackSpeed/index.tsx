@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { PrimaryButton } from 'component-lib';
 import { handleClick } from 'shared/lib/handleKeyboardClick';
 import { IHotkeyParams } from 'shared/constants/hotkeys';
 import './styles.scss';
@@ -16,13 +16,13 @@ const PlaybackSpeed = ({ params }: IPlaybackSpeedProps) => {
           key={hParams.key}
           data-testid="playback-speed-option"
         >
-          <Button
-            className="playback-speed__elem__btn"
+          <PrimaryButton
+            customClassName="playback-speed__elem__btn"
             onClick={() => handleClick(hParams.key)}
-            data-testid="playback-speed-btn"
+            dataTestId="playback-speed-btn"
           >
             Ctrl + {hParams.key}
-          </Button>
+          </PrimaryButton>
           <p className="playback-speed__elem__text">
             To set playback speed to {hParams.action}x
           </p>

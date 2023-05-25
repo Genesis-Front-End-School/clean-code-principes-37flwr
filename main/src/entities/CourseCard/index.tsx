@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from 'react-bootstrap/Card';
+import { Card } from 'react-bootstrap';
 
 import Video from './Video';
 import Content from './CardContent';
