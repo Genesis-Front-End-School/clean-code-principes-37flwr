@@ -1,0 +1,13 @@
+@import 'shared/styles/theme';
+@import 'shared/styles/library';
+
+.course-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: calc(100vh - $header-height);
+  box-sizing: border-box;
+  @include theme-aware($themes) {
+    background-color: themed('background-primary');
+  }
+}
